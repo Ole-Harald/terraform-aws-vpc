@@ -89,7 +89,7 @@ resource "aws_subnet" "public" {
   ipv6_cidr_block                 = cidrsubnet(aws_vpc.main.ipv6_cidr_block, 8, var.ipv6_public_subnet_netnum_offset + count.index)
   availability_zone               = element(local.azs, count.index)
   map_public_ip_on_launch         = var.map_public_ip_on_launch
-  assign_ipv6_address_on_creation = true
+  assign_ipv6_address_on_creation = var.assign_generated_ipv6_cidr_block
 
   tags = merge(
     var.tags,
@@ -176,7 +176,7 @@ resource "aws_subnet" "private" {
   ipv6_cidr_block                 = cidrsubnet(aws_vpc.main.ipv6_cidr_block, 8, count.index + (var.ipv6_private_subnet_netnum_offset == -1 ? length(var.public_subnet_cidrs) : var.ipv6_private_subnet_netnum_offset))
   availability_zone               = element(local.azs, count.index)
   map_public_ip_on_launch         = false
-  assign_ipv6_address_on_creation = true
+  assign_ipv6_address_on_creation = var.assign_generated_ipv6_cidr_block
 
   tags = merge(
     var.tags,
