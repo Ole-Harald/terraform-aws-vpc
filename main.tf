@@ -18,7 +18,7 @@ resource "aws_vpc" "main" {
   instance_tenancy                 = "default"
   enable_dns_support               = true
   enable_dns_hostnames             = var.enable_dns_hostnames
-  assign_generated_ipv6_cidr_block = true
+  assign_generated_ipv6_cidr_block = var.assign_generated_ipv6_cidr_block
 
   tags = merge(
     var.tags,

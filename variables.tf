@@ -91,3 +91,7 @@ variable "enable_vpc_endpoints" {
   description = "Enable or disable VPC endpoints"
   default     = true
 }
+
+variable "assign_generated_ipv6_cidr_block" {
+  default = true
+}
